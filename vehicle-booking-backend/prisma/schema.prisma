@@ -9,7 +9,7 @@ datasource db {
 
 model VehicleType {
   id       Int       @id @default(autoincrement())
-  name     String    @unique                    // e.g., hatchback, suv, sedan, cruiser
+  name     String    @unique
   category String
   wheels   Int
   vehicles Vehicle[]
@@ -17,7 +17,7 @@ model VehicleType {
 
 model Vehicle {
   id         Int       @id @default(autoincrement())
-  name       String                                 // e.g., "Swift", "Thar", "Bullet"
+  name       String
   typeId     Int
   type       VehicleType @relation(fields: [typeId], references: [id])
   bookings   Booking[]
@@ -32,5 +32,5 @@ model Booking {
   startDate  DateTime
   endDate    DateTime
 
-  @@index([vehicleId, startDate, endDate]) // for checking overlap efficiently
+  @@index([vehicleId, startDate, endDate])
 }

@@ -1,26 +1,16 @@
 import { useState } from "react";
+import { StepProps } from "../../types/FormTypes";
 
-interface FormData {
-  firstName: string;
-  lastName: string;
-  wheels: string
-}
-
-interface StepProps {
-  data: FormData;
-  updateField: <K extends keyof FormData>(field: K, value: FormData[K]) => void;
-  nextStep: () => void;
-}
 const StepName = ({ data, updateField, nextStep }: StepProps) => {
   const [error, setError] = useState(false);
 
   const handleNext = () => {
     if (!data.firstName.trim() || !data.lastName.trim()) {
       setError(true);
-    } else {
-      setError(false);
-      nextStep();
+      return;
     }
+    setError(false);
+    nextStep?.();
   };
 
   return (

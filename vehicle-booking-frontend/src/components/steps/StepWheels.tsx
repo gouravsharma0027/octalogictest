@@ -1,9 +1,13 @@
-const StepWheels = ({ data, updateField, nextStep, prevStep }: any) => {
+import { StepProps } from "../../types/FormTypes";
+
+const StepWheels = ({ data, updateField, nextStep, prevStep }: StepProps) => {
+  const wheelsOptions = ["2", "4"];
+
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">How many wheels?</h2>
       <div className="flex gap-4">
-        {["2", "4"].map((w) => (
+        {wheelsOptions.map((w) => (
           <label key={w} className="flex items-center gap-2">
             <input
               type="radio"
